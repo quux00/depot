@@ -21,6 +21,17 @@ class ProductTest < ActiveSupport::TestCase
     assert product.errors[:price].any?
   end
 
+  test "title must be at least 10 chars" do
+    assert @product.valid?
+
+    @product.title = 'hi mom'
+    assert @product.invalid?
+    assert @product.errors[:title].join =~ /Title MUST have at least 10 characters/
+
+    @product.title = '1234567890'
+    assert @product.valid?
+  end
+
   test "product price must be positive" do
     assert @product.valid?
 
