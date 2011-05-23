@@ -13,6 +13,9 @@
 #
 
 class Product < ActiveRecord::Base
+  # --- default scope --- #
+  default_scope :order => 'title'
+
   # --- validations --- #
   validates :title, :description, :image_url, :presence => true
   validates :title, :uniqueness => true, 
