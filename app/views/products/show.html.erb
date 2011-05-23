@@ -1,4 +1,6 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
+<% end %>
 
 <p>
   <b>Title:</b>
@@ -7,7 +9,7 @@
 
 <p>
   <b>Description:</b>
-  <%= @product.description %>
+  <%= sanitize(@product.description) %>
 </p>
 
 <p>
@@ -17,7 +19,7 @@
 
 <p>
   <b>Price:</b>
-  <%= @product.price %>
+  <%= number_to_currency(@product.price) %>
 </p>
 
 

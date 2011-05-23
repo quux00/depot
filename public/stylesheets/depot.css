@@ -143,6 +143,11 @@
   font-size: small;
 }
 
+#timestamp {
+  color: #cec;
+  font-size: 10px;
+}
+
 #main {
   margin-left: 12em;
   padding-top: 1em;
