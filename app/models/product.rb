@@ -16,6 +16,11 @@ class Product < ActiveRecord::Base
   # --- default scope --- #
   default_scope :order => 'title'
 
+  # --- associations --- #
+  has_many :line_items
+  # life-cycle hook methods like this expect a boolean return value
+  before_destroy :ensure_not_referenced_by_any_line_item  # ref to local method
+
   # --- validations --- #
   validates :title, :description, :image_url, :presence => true
   validates :title, :uniqueness => true, 
@@ -30,4 +35,14 @@ class Product < ActiveRecord::Base
     :message => "must be at least $0.01" 
   }
 
+  # --- private methods --- #
+  private
+  def ensure_not_referenced_by_any_line_item
+    if line_items.empty?
+      return true
+    else 
+      errors.add(:base, 'Line Item present')
+      return false
+    end
+  end
 end

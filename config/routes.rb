@@ -1,4 +1,8 @@
 Depot::Application.routes.draw do
+  resources :line_items
+
+  resources :carts
+
   # mp: this doesn't get a "resources" call because the store is not
   #     a resource in the REST sense
   get "store/index"

@@ -154,3 +154,14 @@
   padding-right: 1em;
   background: white;
 }
+
+.button_to, .button_to div {
+  display: inline;
+}
+
+.cart-count {
+  color: green;
+  border-bottom: 1px dashed;
+  font-family: Verdana, sans-serif;
+  font-style: italic;
+}

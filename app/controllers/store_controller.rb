@@ -2,6 +2,11 @@ class StoreController < ApplicationController
   def index
     @products = Product.all
     @currtime = current_time
+    if session[:counter].nil?
+      @cart_count = session[:counter] = 1
+    else
+      @cart_count = session[:counter] += 1
+    end
   end
 
 
