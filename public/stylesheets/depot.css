@@ -165,3 +165,21 @@
   font-family: Verdana, sans-serif;
   font-style: italic;
 }
+
+.cart_title {
+  font-size: 120%;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.total_line {
+  font-weight: bold;
+}
+
+.total_cell {
+  text-decoration: overline;
+}
+
+.item_price, .total_line {
+  text-align: right;
+}
