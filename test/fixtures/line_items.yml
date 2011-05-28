@@ -9,6 +9,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  qty        :integer         default(1)
+#  price      :decimal(8, 2)
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

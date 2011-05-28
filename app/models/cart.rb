@@ -18,6 +18,7 @@ class Cart < ActiveRecord::Base
     else
       curr_item = line_items.build(:product_id => product_id)
     end
+    curr_item.price = curr_item.product.price
     curr_item
   end
 

@@ -19,6 +19,10 @@ class ProductsController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @product }
     end
+
+  rescue
+    logger.error "Attempt to access invalid product: #{params[:id]}"
+    redirect_to products_url, :notice => "Invalid product id"
   end
 
   # GET /products/new

@@ -14,11 +14,13 @@ class LineItemsController < ApplicationController
   # GET /line_items/1.xml
   def show
     @line_item = LineItem.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @line_item }
     end
+  rescue
+    logger.error "Attempt to access invalid line_item: #{params[:id]}"
+    redirect_to store_url, :notice => "Error: Line Item #{params[:id]} not found"
   end
 
   # GET /line_items/new
@@ -41,9 +43,7 @@ class LineItemsController < ApplicationController
   # POST /line_items.xml
   def create
     @cart = current_cart
-    # product = Product.find(params[:product_id])    
     @line_item = @cart.add_product(params[:product_id])
-    # @line_item = @cart.line_items.build(:product_id => product.id)
     session[:counter] = 0
 
     respond_to do |format|
@@ -80,8 +80,12 @@ class LineItemsController < ApplicationController
     @line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to(line_items_url) }
+      #mp: ~TODO: not really sure this should be a redirect (since this is the page we just left)
+      format.html { redirect_to(cart_url(current_cart)) }
       format.xml  { head :ok }
     end
+  rescue
+    logger.error "Attempt to access delete line_item: #{params[:id]}"
+    redirect_to cart_url(current_cart), :notice => "Error: Line Item #{params[:id]} not found"    
   end
 end
