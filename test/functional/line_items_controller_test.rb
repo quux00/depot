@@ -30,7 +30,35 @@ class LineItemsControllerTest < ActionController::TestCase
     line_item = cart.line_items.first
     assert_equal Product.first.price, line_item.price
 
-    assert_redirected_to cart_path(assigns(:line_item).cart)
+    assert_redirected_to store_url
+    # assert_redirected_to cart_path(assigns(:line_item).cart)
+  end
+
+  test "should create a line_item via Ajax" do
+    assert_difference('LineItem.count') do
+      xhr :post, :create, :product_id => products(:ruby).id
+    end
+
+    assert_response :success
+    assert_select_rjs :replace_html, 'cart' do
+      assert_select "tr#current_item td", /Programming Ruby 1.9/
+      assert_select "tr#current_item td", "1"
+      assert_select "tr#current_item td.item_price", /49.50/
+    end
+  end
+
+  test "should create two line_items via Ajax" do
+    assert_difference('LineItem.count') do
+      xhr :post, :create, :product_id => products(:two).id
+      xhr :post, :create, :product_id => products(:two).id
+    end
+
+    assert_response :success
+    assert_select_rjs :replace_html, 'cart' do
+      assert_select "tr#current_item td", /MyString12/
+      assert_select "tr#current_item td", "2"
+      assert_select "tr#current_item td.item_price", /#{products(:two).price.to_f*2}/
+    end
   end
 
   test "should create two different line_items - one entry in cart" do
@@ -52,7 +80,8 @@ class LineItemsControllerTest < ActionController::TestCase
     assert_equal 1, line_item2.qty
     assert_equal products(:two).price, line_item2.price
 
-    assert_redirected_to cart_path(assigns(:line_item).cart)
+    assert_redirected_to store_url
+    # assert_redirected_to cart_path(assigns(:line_item).cart)
   end
 
   test "should create three same line_items - two entries in cart" do
@@ -72,7 +101,8 @@ class LineItemsControllerTest < ActionController::TestCase
     assert_equal 3, line_item.qty
     assert_equal products(:ruby).price, line_item.price
 
-    assert_redirected_to cart_path(assigns(:line_item).cart)
+    assert_redirected_to store_url
+    # assert_redirected_to cart_path(assigns(:line_item).cart)
   end
 
   test "should show line_item" do

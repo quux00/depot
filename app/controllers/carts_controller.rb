@@ -77,17 +77,12 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.xml
   def destroy
-    # @cart = Cart.find(params[:id])
-    # if @cart != current_cart
-    #   redirect_to store_url, :notice => "Not allowed to delete another user's cart"
-    #   return
-    # end
     @cart = current_cart
     @cart.destroy
     session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to(store_url, :notice => "Your cart is currently empty") }
+      format.html { redirect_to(store_url) }
       format.xml  { head :ok }
     end
   end

@@ -1,0 +1,12 @@
+<% if line_item == @current_item %>
+<tr id="current_item">
+<% else %>
+<tr>
+<% end %>
+  <td><%= line_item.qty %></td>
+  <td><%= line_item.product.title %></td>
+  <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
+  <td class="inline_delete_button">
+    <%= button_to "Delete", line_item_path(line_item), :method => :delete %>
+  </td>
+</tr>

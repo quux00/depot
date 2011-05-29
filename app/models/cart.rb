@@ -22,6 +22,10 @@ class Cart < ActiveRecord::Base
     curr_item
   end
 
+  def total_items
+    line_items.sum(:qty)
+  end
+
   def total_price
     # Rails defines Array#sum helper that you could also use
     # line_items.to_a.sum { |item| item.total_price }

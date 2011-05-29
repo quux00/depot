@@ -134,7 +134,7 @@
   padding-top: 1em;
   padding-left: 1em;
   padding-bottom: 1em;
-  width: 10em;
+  width: 20em;
   background: #141;
 }
 
@@ -149,7 +149,7 @@
 }
 
 #main {
-  margin-left: 12em;
+  margin-left: 23em;
   padding-top: 1em;
   padding-right: 1em;
   background: white;
@@ -186,4 +186,15 @@
 
 .inline_delete_button {
   padding: 0 0 0 1em;
+}
+
+#cart, #cart table {
+  font-size: smaller;
+  color:     white;
+}
+
+#cart table {
+  border-top: 1px dotted #595;
+  border-bottom: 1px dotted #595;
+  margin-bottom: 10px;
 }

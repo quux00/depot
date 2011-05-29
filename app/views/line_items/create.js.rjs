@@ -1,0 +1,27 @@
+# page is an instance of a JavaScript generator
+page.replace_html('cart', render(@cart))
+
+page[:cart].visual_effect :blind_down if @cart.total_items == 1
+
+page[:current_item].visual_effect :highlight,
+                                  :startcolor => "#88ff88",
+                                  :endcolor => "#114411"
+
+
+=begin
+Note: this is the JavaScript that is returned to the browser via Ajax call
+if all three lines of code execute:
+
+try {
+  Element.update("cart", "<div class=\"cart_title\">Your Pragmatic Cart</div>\n<table>\n  <tr id=\"current_item\">\n  <td>1</td>\n  <td>Programming Ruby 1.9</td>\n  <td class=\"item_price\">$49.50</td>\n  <td class=\"inline_delete_button\">\n    <form method=\"post\" action=\"/line_items/61\"  class=\"button_to\"><div><input name=\"_method\" type=\"hidden\" value=\"delete\" /><input type=\"submit\" value=\"Delete\" /><input name=\"authenticity_token\" type=\"hidden\" value=\"7owY7dTlx+hAq81vLSjg3g9AHkVMxuk67Yy8yW2iarA=\" /></div></form>\n  </td>\n</tr>\n\n  <tr class=\"total_line\">\n    <td colspan=\"2\">Total&nbsp;&nbsp;</td>\n    <td class=\"total_cell\">$49.50</td>\n  </tr>\n</table>\n\n<form method=\"post\" action=\"/carts/21\"  class=\"button_to\"><div><input name=\"_method\" type=\"hidden\" value=\"delete\" /><input data-confirm=\"Are you sure?\" type=\"submit\" value=\"Empty Cart\" /><input name=\"authenticity_token\" type=\"hidden\" value=\"7owY7dTlx+hAq81vLSjg3g9AHkVMxuk67Yy8yW2iarA=\" /></div></form>\n<br /><br />\n");
+
+  $("cart").visualEffect("blind_down");
+
+  $("current_item").visualEffect("highlight", {"startcolor":"#88ff88","endcolor":"#114411"});
+
+} catch (e) { 
+  alert('RJS error:\n\n' + e.toString()); alert('Element.update(\"cart\", \"<div class=\\\"cart_title\\\">Your Pragmatic Cart</div>\\n<table>\\n  <tr id=\\\"current_item\\\">\\n  <td>1</td>\\n  <td>Programming Ruby 1.9</td>\\n  <td class=\\\"item_price\\\">$49.50</td>\\n  <td class=\\\"inline_delete_button\\\">\\n    <form method=\\\"post\\\" action=\\\"/line_items/61\\\"  class=\\\"button_to\\\"><div><input name=\\\"_method\\\" type=\\\"hidden\\\" value=\\\"delete\\\" /><input type=\\\"submit\\\" value=\\\"Delete\\\" /><input name=\\\"authenticity_token\\\" type=\\\"hidden\\\" value=\\\"7owY7dTlx+hAq81vLSjg3g9AHkVMxuk67Yy8yW2iarA=\\\" /></div></form>\\n  </td>\\n</tr>\\n\\n  <tr class=\\\"total_line\\\">\\n    <td colspan=\\\"2\\\">Total&nbsp;&nbsp;</td>\\n    <td class=\\\"total_cell\\\">$49.50</td>\\n  </tr>\\n</table>\\n\\n<form method=\\\"post\\\" action=\\\"/carts/21\\\"  class=\\\"button_to\\\"><div><input name=\\\"_method\\\" type=\\\"hidden\\\" value=\\\"delete\\\" /><input data-confirm=\\\"Are you sure?\\\" type=\\\"submit\\\" value=\\\"Empty Cart\\\" /><input name=\\\"authenticity_token\\\" type=\\\"hidden\\\" value=\\\"7owY7dTlx+hAq81vLSjg3g9AHkVMxuk67Yy8yW2iarA=\\\" /></div></form>\\n<br /><br />\\n\");\n$(\"cart\").visualEffect(\"blind_down\");\n$(\"current_item\").visualEffect(\"highlight\", {\"startcolor\":\"#88ff88\",\"endcolor\":\"#114411\"});'); 
+  throw e 
+}
+
+=end
