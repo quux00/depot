@@ -48,14 +48,12 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        #DEBUG
-        logger.debug "*********** LIC#create: format = #{format.inspect}"
-        #END DEBUG
-
         # without javascript button goes here
         # with javascript image link goes here
-        format.html { redirect_to('http://www.google.com') }
-        # format.html { redirect_to(store_url) }
+        #DEBUG
+        # format.html { redirect_to('http://www.google.com') }
+        #END DEBUG
+        format.html { redirect_to(store_url) }
         # with javascript button goes here
         format.js   { @current_item = @line_item }
         format.xml  { render :xml => @line_item, :status => :created, :location => @line_item }
@@ -90,7 +88,9 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       #mp: ~TODO: not really sure this should be a redirect (since this is the page we just left)
-      format.html { redirect_to(cart_url(current_cart)) }
+      format.html { redirect_to(store_url) }
+      # format.js   {  }
+      # format.html { redirect_to(cart_url(current_cart)) }     # older version
       format.xml  { head :ok }
     end
   rescue

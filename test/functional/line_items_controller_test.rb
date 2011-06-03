@@ -126,7 +126,8 @@ class LineItemsControllerTest < ActionController::TestCase
     end
 
     # after deleting a line item from the cart, you are sent back to the cart
-    assert_redirected_to cart_url( Cart.find( session[:cart_id] ) )
+    assert_redirected_to store_url
+    # assert_redirected_to cart_url( Cart.find( session[:cart_id] ) )
   end
 
   test "should create 3 of same and then delete them with one delete" do
@@ -151,6 +152,6 @@ class LineItemsControllerTest < ActionController::TestCase
     assert cart.line_items.empty?
 
     # after deleting a line item from the cart, you are sent back to the cart
-    assert_redirected_to cart_url( Cart.find( session[:cart_id] ) )
+    assert_redirected_to store_url
   end
 end
