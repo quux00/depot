@@ -117,7 +117,7 @@ class LineItemsControllerTest < ActionController::TestCase
 
   test "should update line_item" do
     put :update, :id => @line_item.to_param, :line_item => @line_item.attributes
-    assert_redirected_to line_item_path(assigns(:line_item))
+    assert_redirected_to store_url
   end
 
   test "should destroy line_item - simple" do

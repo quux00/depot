@@ -1,7 +1,7 @@
 <% if cart.line_items.any? %>
 <div class="cart_title">Your Pragmatic Cart</div>
 <table>
-  <%= render(cart.line_items) %>
+  <%= render(cart.line_items.order(:product_id)) %>
   <tr class="total_line">
     <td colspan="2">Total&nbsp;&nbsp;</td>
     <td class="total_cell"><%= number_to_currency(cart.total_price) %></td>

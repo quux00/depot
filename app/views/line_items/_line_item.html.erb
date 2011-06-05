@@ -7,6 +7,14 @@
   <td><%= line_item.product.title %></td>
   <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
   <td class="inline_delete_button">
+    <% if line_item.qty > 1 %>
+      <span class="qty_decrease">
+        <%= link_to "Decrease", line_item_path(line_item, :qty => line_item.qty - 1), 
+                                                          :method => :put, 
+                                                          :remote => true, 
+                                                          :class => "qd" %>
+      </span><br \>
+    <% end %>
     <%= button_to "Delete", line_item_path(line_item), :method => :delete,
                                                        :remote => true %>
   </td>

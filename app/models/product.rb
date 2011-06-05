@@ -14,7 +14,7 @@
 
 class Product < ActiveRecord::Base
   # --- default scope --- #
-  default_scope :order => 'title'
+  default_scope :order => 'id'
 
   # --- associations --- #
   has_many :line_items

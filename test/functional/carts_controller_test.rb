@@ -55,4 +55,17 @@ class CartsControllerTest < ActionController::TestCase
     # assert_select 'td.total_cell', 0
     # assert_select 'div.price_line', 3
   end
+
+  test "should destroy cart via ajax" do
+    assert_difference('Cart.count', -1) do
+      session[:cart_id] = @cart.id
+      xhr :delete, :destroy, :id => @cart.id
+    end
+
+    assert_response :success
+    #~TODO: I don't know how to test that it has disappeared from the page
+    #       giving up for now ...
+  end
+
+
 end
