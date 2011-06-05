@@ -9,6 +9,7 @@
 </table>
 
 <%= button_to "Empty Cart", cart, :confirm => "Are you sure?",
-                                   :method => :delete %>
+                                  :remote => true,
+                                  :method => :delete %>
 <br /><br />
 <% end %>

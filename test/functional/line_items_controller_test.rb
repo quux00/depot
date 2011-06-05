@@ -153,5 +153,12 @@ class LineItemsControllerTest < ActionController::TestCase
 
     # after deleting a line item from the cart, you are sent back to the cart
     assert_redirected_to store_url
+
+    #~TODO: check that the cart is missing from the page
+    #~ doesn't work: next thing to try: delete with JS and try assert_select_rjs :replace_html, 'cart' do => will call the delete.rjs version
+    # get store_url
+    # assert_select 'h1', 'Your Pragmatic Catalog'
+    # assert_select 'td.total_cell', 0
+    # assert_select 'div.price_line', 3
   end
 end

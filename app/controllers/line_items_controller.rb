@@ -89,7 +89,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       #mp: ~TODO: not really sure this should be a redirect (since this is the page we just left)
       format.html { redirect_to(store_url) }
-      # format.js   {  }
+      format.js   { @cart = current_cart }
       # format.html { redirect_to(cart_url(current_cart)) }     # older version
       format.xml  { head :ok }
     end

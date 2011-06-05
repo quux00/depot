@@ -46,5 +46,13 @@ class CartsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to store_path
+
+    #~TODO: none of the below works - no idea how to render
+    # the store url in the test and check what's there
+    # -----------------------------------------------------
+    # <get or render> store_url
+    # assert_select 'h1', 'Your Pragmatic Catalog'
+    # assert_select 'td.total_cell', 0
+    # assert_select 'div.price_line', 3
   end
 end

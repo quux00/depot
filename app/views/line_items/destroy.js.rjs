@@ -1,1 +1,7 @@
-page[:cart].visual_effect :blind_up
+if @cart.total_items == 0
+  page[:cart].visual_effect :blind_up
+else
+  page.replace_html('cart', render(@cart))
+end
+
+
